@@ -1,0 +1,4 @@
+interface:
+  display_name: "Address PR Feedback"
+  short_description: "Collect and fix GitHub PR review comments"
+  default_prompt: "Use $address-pr-feedback to check and fix review comments on this branch's PR."
