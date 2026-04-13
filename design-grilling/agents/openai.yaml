@@ -1,0 +1,4 @@
+interface:
+  display_name: "Grill my design"
+  short_description: "Review some user-interface mocks and extract design context"
+  default_prompt: "Use $design-grilling to interrogate a provided set of user-interface mocks."
