@@ -26,9 +26,10 @@ gh api repos/{owner}/{repo}/pulls/{pr_number}/comments
 gh api repos/{owner}/{repo}/issues/{pr_number}/comments
 ```
 
-3. Parse and deduplicate feedback. Identify reviewer type (human vs AI — look for bot accounts or known names like "greptile", "graphite-app").
+3. Parse and deduplicate feedback. Identify reviewer type (human vs AI — look for bot accounts or known names like "greptile", "graphite-app"). 
 
 4. Skip threads already marked as resolved unless the user asks to revisit them.
+5. For each feedback item check if it has alreay been addressed via code changes. If so, record this for communication to the user in Phase 2.
 
 ## Phase 2: Triage with User
 
@@ -55,7 +56,7 @@ For each item classified as **Address**:
 1. Read the relevant file(s) and understand the surrounding context.
 2. If the reviewer suggested an approach, evaluate it critically — use it as a starting point but ensure the fix aligns with project conventions. Do not blindly accept suggestions.
 3. Implement the fix.
-4. Run linting/type checks on affected files.
+4. Always run linting and type checking on affected files and allow the linter to autofix supported issues - we should not be committing code that does not pass these steps.
 5. Commit as a **separate git commit** with a clear message.
 
 **Do NOT push after each commit.** Continue to the next item.
